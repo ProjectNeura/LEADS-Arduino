@@ -1,0 +1,21 @@
+{
+  "name": "LEADS",
+  "version": "1.0.0",
+  "description": "Lightweight Embedded Assisted Driving System Arduino Library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ProjectNeura/LEADS-Arduino"
+  },
+  "authors": [
+    {
+      "name": "ProjectNeura",
+      "email": "central@projectneura.org",
+      "url": "https://projectneura.org",
+      "maintainer": true
+    }
+  ],
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/ProjectNeura/LEADS-Arduino",
+  "frameworks": "*",
+  "platforms": "*"
+}
