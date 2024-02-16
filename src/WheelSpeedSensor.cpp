@@ -1,5 +1,5 @@
 #include "WheelSpeedSensor.h"
-#include "Algorithms.h"
+#include "Utils.h"
 
 WheelSpeedSensor::WheelSpeedSensor(int *const pins, OnUpdate onUpdate) : Device<float>(pins), _onUpdate(onUpdate) {
 }
@@ -31,4 +31,10 @@ float WheelSpeedSensor::read() {
 
 String WheelSpeedSensor::debug() {
     return String(_t1) + " " + String(_t2);
+}
+
+void returnWheelSpeed(String header, float n) {
+	Serial.print(tag + ":");
+    Serial.print(n);
+    Serial.print(";");
 }
