@@ -16,16 +16,13 @@ float getRPM(long t1, long t2) {
 }
 
 float WheelSpeedSensor::read() {
-    long c = millis();
-    if (c - _lastUpdate > ZERO_INTERVAL) return 0;
     if (pulseTriggered(_pins[0])) {
         if (!_consecutive) {
             _consecutive = true;
             _t1 = _t2;
-            _t2 = c;
+            _t2 = millis();
             float r = getRPM(_t1, _t2);
             _onUpdate(r);
-            _lastUpdate = c;
             return r;
         }
     } else _consecutive = false;

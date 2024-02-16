@@ -4,14 +4,11 @@
 
 #include "Device.h"
 
-#define ZERO_INTERVAL 3000
-
 typedef void (*OnUpdate)(float ws);
 
 class WheelSpeedSensor : public Device<float> {
 protected:
     long _t1, _t2;
-    long _lastUpdate;
     bool _consecutive;
     const OnUpdate _onUpdate;
 
