@@ -34,7 +34,7 @@ String WheelSpeedSensor::debug() {
 }
 
 void returnWheelSpeed(String header, float n) {
-	Serial.print(tag + ":");
+	Serial.print(header + ":");
     Serial.print(n);
     Serial.print(";");
 }
