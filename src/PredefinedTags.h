@@ -7,6 +7,8 @@
 #define CENTER_REAR_WHEEL_SPEED_SENSOR "wss_cr"
 #define LEFT_REAR_WHEEL_SPEED_SENSOR "wss_lr"
 #define RIGHT_REAR_WHEEL_SPEED_SENSOR "wss_rr"
+#define THROTTLE_PEDAL "tpd"
+#define BRAKE_PEDAL "bpd"
 
 
 #endif // PREDEFINEDTAGS_H
