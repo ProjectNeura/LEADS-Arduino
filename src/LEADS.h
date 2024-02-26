@@ -1,5 +1,6 @@
 #include "Controller.h"
 #include "Device.h"
-#include "WheelSpeedSensor.h"
-#include "Utils.h"
 #include "PredefinedTags.h"
+#include "Utils.h"
+#include "VoltageSensor.h"
+#include "WheelSpeedSensor.h"
