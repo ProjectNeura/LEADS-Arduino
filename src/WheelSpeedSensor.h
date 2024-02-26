@@ -19,7 +19,5 @@ public:
     String debug();
 };
 
-void returnWheelSpeed(String header, float n);
-
 
 #endif // WHEELSPEEDSENSOR_H
