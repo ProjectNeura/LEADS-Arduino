@@ -13,21 +13,11 @@ protected:
 
 public:
     Device(int *const pins) : _pins(pins) {}
-    ~Device() {
-        delete[] _pins;
-    }
-    void tag(String tag) {
-        _tag = tag;
-    }
-    String tag() {
-        return _tag;
-    }
-    void parentTags(ArrayList<String> parentTags) {
-        _parentTags = parentTags;
-    }
-    ArrayList<String> parentTags() {
-        return _parentTags;
-    }
+    ~Device() { delete[] _pins; }
+    void tag(String tag) { _tag = tag; }
+    String tag() { return _tag; }
+    void parentTags(ArrayList<String> parentTags) { _parentTags = parentTags; }
+    ArrayList<String> parentTags() { return _parentTags; }
     void pinsCheck(int requiredNum) {
         if (sizeof(_pins) != requiredNum)
             throw value_error(format("This device only takes in {} pins", requiredNum));

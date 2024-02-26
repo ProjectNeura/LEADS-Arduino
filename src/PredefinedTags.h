@@ -9,4 +9,4 @@
 #define RIGHT_REAR_WHEEL_SPEED_SENSOR "wss_rr"
 
 
-#endif //PREDEFINEDTAGS_H
+#endif // PREDEFINEDTAGS_H
