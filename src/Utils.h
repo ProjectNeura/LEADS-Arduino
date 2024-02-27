@@ -2,6 +2,8 @@
 #define UTILS_H
 
 
+#include "Arduino.h"
+
 bool pulseTriggered(int pin);
 
 bool equivalent(long a, long b, float epsilon);

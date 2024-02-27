@@ -6,7 +6,7 @@
 
 class VoltageSensor : public Device<float> {
 public:
-    WheelSpeedSensor(int *const pins);
+    VoltageSensor(int *const pins);
     void initialize();
     float read();
 };
