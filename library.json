@@ -1,6 +1,6 @@
 {
   "name": "LEADS",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Lightweight Embedded Assisted Driving System Arduino Library",
   "repository": {
     "type": "git",
