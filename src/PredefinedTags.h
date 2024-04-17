@@ -13,6 +13,7 @@
 #define THROTTLE_PEDAL "tpd"
 #define BRAKE_PEDAL "bpd"
 #define MOTOR_CONTROLLER "mc"
+#define BRAKE_CONTROLLER "bc"
 #define GPS_RECEIVER "gps"
 #define LEFT_INDICATOR "lindi"
 #define RIGHT_INDICATOR "rindi"
