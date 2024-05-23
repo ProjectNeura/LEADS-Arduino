@@ -8,7 +8,7 @@ class VoltageSensor : public Device<float> {
 protected:
     float _factor;
 public:
-    VoltageSensor(int r1, int r2, int *const pins);
+    VoltageSensor(float r1, float r2, int *const pins);
     void initialize();
     float read();
 };
