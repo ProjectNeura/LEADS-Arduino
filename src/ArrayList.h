@@ -39,14 +39,14 @@ public:
     ~ArrayList() { delete[] _array; }
     int size() { return _size; }
     E const *toArray() { return _array; }
-    void set(int index, E element) { _array[index] = element; }
+    void set(int index, const E &element) { _array[index] = element; }
     E get(int index) { return _array[index]; }
     void clear() {
         delete[] _array;
         _array = new E[0];
         _size = _capacity = 0;
     }
-    void add(E element) {
+    void add(const E &element) {
         ensureCapacityInternal(_size + 1);
         _array[_size++] = element;
     }
@@ -55,29 +55,29 @@ public:
         result += other;
         return result;
     }
-    bool contains(E element) { return indexOf(element) >= 0; }
-    int indexOfInRange(E element, int start, int stop) {
+    bool contains(const E &element) { return indexOf(element) >= 0; }
+    int indexOfInRange(const E &element, int start, int stop) {
         for (int i = start; i < stop; i++)
             if (_array[i] == element)
                 return i;
         return -1;
     }
-    int indexOf(E element) { return indexOfInRange(element, 0, _size); }
-    int lastIndexOfInRange(E element, int start, int stop) {
+    int indexOf(const E &element) { return indexOfInRange(element, 0, _size); }
+    int lastIndexOfInRange(const E &element, int start, int stop) {
         for (int i = stop - 1; i >= start; i--)
             if (_array[i] == element)
                 return i;
         return -1;
     }
-    int lastIndexOf(E element) { return lastIndexOfInRange(element, 0, _size); }
+    int lastIndexOf(const E &element) { return lastIndexOfInRange(element, 0, _size); }
     ArrayList<E> copy() { return ArrayList<E>(reinterpret_cast<size_t>(this)); }
-    ArrayList<E> operator+(E element) {
+    ArrayList<E> operator+(const E &element) {
         ArrayList<E> result = copy();
         result += element;
         return result;
     }
     ArrayList<E> operator+(const ArrayList<E> &other) { return add(other); }
-    ArrayList<E> &operator+=(E element) {
+    ArrayList<E> &operator+=(const E &element) {
         add(element);
         return *this;
     }
