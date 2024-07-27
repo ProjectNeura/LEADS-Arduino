@@ -12,6 +12,7 @@ protected:
     void _attachDevice(String &tag, Device<E> device) {
         _device_tags.add(tag);
         _devices.add(device);
+        device.tag(tag);
     }
 
 public:
@@ -22,7 +23,7 @@ public:
     virtual void initialize(const ArrayList<String> &parentTags) {
         Device<E>::initialize(parentTags);
         for (Device<E> device: _devices)
-            device.initialize(merge(this->_parentTags, parentTags));
+            device.initialize(merge(this->_parentTags, this->_tag));
     }
 };
 
