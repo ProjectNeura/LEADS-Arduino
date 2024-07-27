@@ -20,7 +20,7 @@ public:
     void parentTags(const ArrayList<String> &parentTags) { _parentTags = parentTags; }
     const ArrayList<String> &parentTags() { return _parentTags; }
     virtual void initialize(const ArrayList<String> &parentTags) { _parentTags = parentTags; }
-    void initializeTop() { initialize(ArrayList<String>(0)); }
+    void initializeAsRoot() { initialize(ArrayList<String>(0)); }
     virtual T read() { return T(); }
     virtual void write(T payload) {}
     virtual void update(T data) {}
