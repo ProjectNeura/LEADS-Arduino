@@ -1,4 +1,3 @@
-#include "Arduino.h"
 #include "LEADS.h"
 
 ArrayList<int> test = ArrayList<int>();
