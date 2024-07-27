@@ -32,9 +32,10 @@ private:
 public:
     explicit ArrayList(size_t initialCapacity = 10) :
         _size(0), _capacity(initialCapacity), _array(new E[initialCapacity]) {}
-    explicit ArrayList(E const *const initialArray, size_t size) : _size(0), _capacity(size), _array(new E[size]) {
+    ArrayList(E const *const initialArray, size_t size) : _size(0), _capacity(size), _array(new E[size]) {
         memcpy(_array, initialArray, size * sizeof(E));
     }
+    ArrayList(const ArrayList<E> &other) : ArrayList(other._array, other._size) {}
     ~ArrayList() { delete[] _array; }
     int size() { return _size; }
     E const *toArray() { return _array; }
@@ -49,7 +50,7 @@ public:
         ensureCapacityInternal(_size + 1);
         _array[_size++] = element;
     }
-    ArrayList<E> add(ArrayList<E> other) {
+    ArrayList<E> add(const ArrayList<E> &other) {
         ArrayList<E> result = copy();
         result.add(other._array, other._size);
         return result;
@@ -69,7 +70,15 @@ public:
         return -1;
     }
     int lastIndexOf(E element) { return lastIndexOfInRange(element, 0, _size); }
-    ArrayList<E> copy() { return ArrayList<E>(_array); }
+    ArrayList<E> copy() { return ArrayList<E>(this); }
+    ArrayList<E> operator+(const ArrayList<E> &other) { return add(other); }
+    ArrayList<E> &operator=(const ArrayList<E> &other) {
+        if (this != &other) {
+            ensureCapacityInternal(other._capacity);
+            memcpy(_array, other._array, _size * sizeof(E));
+        }
+        return *this;
+    }
 };
 
 

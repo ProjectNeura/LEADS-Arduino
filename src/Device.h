@@ -14,7 +14,7 @@ protected:
 public:
     explicit Device(const ArrayList<int> &pins) : _pins(pins) {}
     ~Device() = default;
-    void tag(String &tag) { _tag = tag; }
+    void tag(const String &tag) { _tag = tag; }
     String tag() { return _tag; }
     void parentTags(const ArrayList<String> &parentTags) { _parentTags = parentTags; }
     const ArrayList<String> &parentTags() { return _parentTags; }
