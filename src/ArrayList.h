@@ -7,8 +7,7 @@
 template<typename E>
 class ArrayList {
 private:
-    size_t _size;
-    size_t _capacity;
+    size_t _size, _capacity;
     E *_array;
     void grow(size_t minCapacity) {
         size_t newCapacity = _capacity + (_capacity >> 1);
@@ -44,7 +43,7 @@ public:
     void clear() {
         delete[] _array;
         _array = new E[0];
-        _size = 0;
+        _size = _capacity = 0;
     }
     void add(E element) {
         ensureCapacityInternal(_size + 1);
