@@ -70,15 +70,20 @@ public:
         return -1;
     }
     int lastIndexOf(E element) { return lastIndexOfInRange(element, 0, _size); }
-    ArrayList<E> copy() { return ArrayList<E>(this); }
+    ArrayList<E> copy() { return ArrayList<E>(reinterpret_cast<size_t>(this)); }
     ArrayList<E> operator+(const ArrayList<E> &other) { return add(other); }
     ArrayList<E> &operator=(const ArrayList<E> &other) {
         if (this != &other) {
             ensureCapacityInternal(other._capacity);
-            memcpy(_array, other._array, _size * sizeof(E));
+            if (other._size > 0)
+                memcpy(_array, other._array, _size * sizeof(E));
         }
         return *this;
     }
+    E *begin() { return _array; }
+    E *end() { return _array + _size; }
+    const E *begin() const { return _array; }
+    const E *end() const { return _array + _size; }
 };
 
 
