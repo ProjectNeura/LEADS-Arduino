@@ -1,20 +1,31 @@
+# !!! WARNING !!! AUTO-GENERATED FILE, PLEASE DO NOT MODIFY IT AND USE
+# https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+#
+# If you need to override existing CMake configuration or add extra,
+# please create `CMakeListsUser.txt` in the root of project.
+# The `CMakeListsUser.txt` will not be overwritten by PlatformIO.
+
 cmake_minimum_required(VERSION 3.28)
-project(LEADS_Arduino)
+set(CMAKE_SYSTEM_NAME Generic)
+set(CMAKE_C_COMPILER_WORKS 1)
+set(CMAKE_CXX_COMPILER_WORKS 1)
 
-set(CMAKE_CXX_STANDARD 14)
+project(LEADS-Arduino C CXX)
 
-include_directories(src)
+if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/CMakeListsUser.txt)
+    include(CMakeListsUser.txt)
+endif()
 
-add_executable(LEADS_Arduino
-        src/ArrayList.h
-        src/Controller.cpp
-        src/Controller.h
-        src/Device.h
-        src/LEADS.h
-        src/PredefinedTags.h
-        src/Utils.cpp
-        src/Utils.h
-        src/VoltageSensor.cpp
-        src/VoltageSensor.h
-        src/WheelSpeedSensor.cpp
-        src/WheelSpeedSensor.h)
+add_custom_target(
+        Production ALL
+        COMMAND platformio -c clion run "$<$<NOT:$<CONFIG:All>>:-e${CMAKE_BUILD_TYPE}>"
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+add_custom_target(
+        Debug ALL
+        COMMAND platformio -c clion run --target debug "$<$<NOT:$<CONFIG:All>>:-e${CMAKE_BUILD_TYPE}>"
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+add_executable(Z_DUMMY_TARGET ${SRC_LIST})
