@@ -3,16 +3,13 @@
 
 
 #include "Arduino.h"
+#include "Peer.h"
 
 bool pulseTriggered(int pin);
 
-bool equivalent(long a, long b, float epsilon);
+void returnFloat(Peer peer, const String &tag, float n);
 
-bool equivalent(float a, float b, float epsilon);
-
-void returnFloat(const String &tag, float n);
-
-void returnDouble(const String &tag, double n);
+void returnDouble(Peer peer, const String &tag, double n);
 
 
 #endif // UTILS_H
