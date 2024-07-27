@@ -52,7 +52,7 @@ public:
     }
     ArrayList<E> add(const ArrayList<E> &other) {
         ArrayList<E> result = copy();
-        result.add(other._array, other._size);
+        result += other;
         return result;
     }
     bool contains(E element) { return indexOf(element) >= 0; }
@@ -71,7 +71,20 @@ public:
     }
     int lastIndexOf(E element) { return lastIndexOfInRange(element, 0, _size); }
     ArrayList<E> copy() { return ArrayList<E>(reinterpret_cast<size_t>(this)); }
+    ArrayList<E> operator+(E element) {
+        ArrayList<E> result = copy();
+        result += element;
+        return result;
+    }
     ArrayList<E> operator+(const ArrayList<E> &other) { return add(other); }
+    ArrayList<E> &operator+=(E element) {
+        add(element);
+        return *this;
+    }
+    ArrayList<E> &operator+=(const ArrayList<E> &other) {
+        add(other._array, other._size);
+        return *this;
+    }
     ArrayList<E> &operator=(const ArrayList<E> &other) {
         if (this != &other) {
             ensureCapacityInternal(other._capacity);

@@ -23,11 +23,8 @@ public:
     Device<E> device(const String &tag) { return _devices.get(_device_tags.indexOf(tag)); }
     virtual void initialize(const ArrayList<String> &parentTags) {
         Device<E>::initialize(parentTags);
-        for (Device<E> d: _devices) {
-            ArrayList<String> deviceParentTags = this->_parentTags.copy();
-            deviceParentTags.add(this->_tag);
-            d.initialize(deviceParentTags);
-        }
+        for (Device<E> d: _devices)
+            d.initialize(this->_parentTags + this->_tag);
     }
 };
 
