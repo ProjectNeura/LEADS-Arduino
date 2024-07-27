@@ -3,8 +3,8 @@ Controller KEYWORD1
 Device KEYWORD1
 VoltageSensor KEYWORD1
 WheelSpeedSensor KEYWORD1
+Peer KEYWORD1
 pulseTriggered KEYWORD2
-equivalent KEYWORD2
 returnFloat KEYWORD2
 returnDouble KEYWORD2
 LEFT_FRONT_WHEEL_SPEED_SENSOR LITERAL1
