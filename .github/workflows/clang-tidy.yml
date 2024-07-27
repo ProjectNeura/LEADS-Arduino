@@ -2,6 +2,7 @@ on:
   pull_request:
     types:
       - opened
+      - review_requested
 
 permissions:
   contents: read
