@@ -6,7 +6,7 @@
 
 template<typename E>
 class ArrayList {
-private:
+protected:
     size_t _size, _capacity;
     E *_array;
     void grow(size_t minCapacity) {
