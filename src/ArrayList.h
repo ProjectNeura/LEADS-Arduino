@@ -18,16 +18,13 @@ private:
         memmove(newArray, _array, _size * sizeof(E));
         delete[] _array;
         _array = newArray;
+        _capacity = newCapacity;
     }
     void ensureExplicitCapacity(size_t minCapacity) {
-        if (minCapacity > sizeof(_array))
+        if (minCapacity > _capacity)
             grow(minCapacity);
     }
-    void ensureCapacityInternal(size_t minCapacity) {
-        if (sizeof(_array) == 0)
-            minCapacity = max(10, minCapacity);
-        ensureExplicitCapacity(minCapacity);
-    }
+    void ensureCapacityInternal(size_t minCapacity) { ensureExplicitCapacity(max(10, minCapacity)); }
     void add(E *elements, size_t size) {
         ensureCapacityInternal(_size + size);
         memcpy(_array + _size, elements, size * sizeof(E));
