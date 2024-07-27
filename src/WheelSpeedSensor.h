@@ -8,15 +8,14 @@ typedef void (*OnUpdate)(float ws);
 
 class WheelSpeedSensor : public Device<float> {
 protected:
-    long _t1, _t2;
+    unsigned long _t1, _t2;
     bool _consecutive;
     const OnUpdate _onUpdate;
 
 public:
-    WheelSpeedSensor(int *const pins, OnUpdate onUpdate);
-    void initialize();
-    float read();
-    String debug();
+    WheelSpeedSensor(const ArrayList<int> &pins, OnUpdate onUpdate);
+    void initialize(const ArrayList<String> &parentTags) override;
+    float read() override;
 };
 
 

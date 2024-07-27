@@ -1,22 +1,21 @@
 #include "WheelSpeedSensor.h"
 #include "Utils.h"
 
-WheelSpeedSensor::WheelSpeedSensor(int *const pins, OnUpdate onUpdate) : Device<float>(pins), _onUpdate(onUpdate) {
-}
+WheelSpeedSensor::WheelSpeedSensor(const ArrayList<int> &pins, OnUpdate onUpdate) :
+    Device<float>(pins), _t1(0), _t2(0), _consecutive(false), _onUpdate(onUpdate) {}
 
-void WheelSpeedSensor::initialize() {
-    pinMode(_pins[0], INPUT);
+void WheelSpeedSensor::initialize(const ArrayList<String> &parentTags) {
+    Device<float>::initialize(parentTags);
+    pinMode(_pins.get(0), INPUT);
     _t1 = 0;
     _t2 = millis();
     _consecutive = false;
 }
 
-float getRPM(long t1, long t2) {
-    return 60000.0 / (t2 - t1);
-}
+float getRPM(unsigned long t1, unsigned long t2) { return float(60000.0 / double(t2 - t1)); }
 
 float WheelSpeedSensor::read() {
-    if (pulseTriggered(_pins[0])) {
+    if (pulseTriggered(_pins.get(0))) {
         if (!_consecutive) {
             _consecutive = true;
             _t1 = _t2;
@@ -25,10 +24,7 @@ float WheelSpeedSensor::read() {
             _onUpdate(r);
             return r;
         }
-    } else _consecutive = false;
+    } else
+        _consecutive = false;
     return getRPM(_t1, _t2);
-}
-
-String WheelSpeedSensor::debug() {
-    return String(_t1) + " " + String(_t2);
 }
