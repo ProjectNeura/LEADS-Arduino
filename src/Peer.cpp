@@ -1,14 +1,15 @@
 #include "Peer.h"
 
 
-Peer::Peer(unsigned int baudRate, String separator, String remainder) :
+// std::move() is not available in the C library
+Peer::Peer(unsigned int baudRate, const String &separator, const String &remainder) : // NOLINT(*-pass-by-value)
     Controller<String, String>(), _baudRate(baudRate), _separator(separator), _remainder(remainder) {}
 void Peer::initialize(const ArrayList<String> &parentTags) {
     Controller<String, String>::initialize(parentTags);
     Serial.begin(_baudRate);
 }
 String Peer::read() {
-    char c = Serial.read();
+    char c = char(Serial.read());
     if (c > 0) {
         _remainder += c;
         if (!_remainder.endsWith(_separator))

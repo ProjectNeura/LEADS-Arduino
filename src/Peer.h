@@ -11,7 +11,7 @@ protected:
     String _separator, _remainder;
 
 public:
-    explicit Peer(unsigned int baudRate = 9600, String separator = ";", String remainder = "");
+    explicit Peer(unsigned int baudRate = 9600, const String &separator = ";", const String &remainder = "");
     void initialize(const ArrayList<String> &parentTags) override;
     String read() override;
     void write(String payload) override;

@@ -9,7 +9,7 @@ class Controller : public Device<T> {
 protected:
     ArrayList<String> _device_tags;
     ArrayList<Device<E>> _devices;
-    void _attachDevice(const String &tag, Device<E> device) {
+    void _attachDevice(const String &tag, const Device<E> &device) {
         _device_tags.add(tag);
         _devices.add(device);
         device.tag(tag);
