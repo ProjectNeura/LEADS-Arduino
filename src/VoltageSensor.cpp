@@ -5,7 +5,7 @@ VoltageSensor::VoltageSensor(float r1, float r2, const ArrayList<int> &pins) :
 
 void VoltageSensor::initialize(const ArrayList<String> &parentTags) {
     Device<float>::initialize(parentTags);
-    pinMode(_pins.get(0), INPUT);
+    pinMode(_pins[0], INPUT);
 }
 
-float VoltageSensor::read() { return (float) analogRead(_pins.get(0)) * _factor * 5 / 1023; }
+float VoltageSensor::read() { return (float) analogRead(_pins[0]) * _factor * 5 / 1023; }

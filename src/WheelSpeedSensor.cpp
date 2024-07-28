@@ -6,7 +6,7 @@ WheelSpeedSensor::WheelSpeedSensor(const ArrayList<int> &pins, OnUpdate onUpdate
 
 void WheelSpeedSensor::initialize(const ArrayList<String> &parentTags) {
     Device<float>::initialize(parentTags);
-    pinMode(_pins.get(0), INPUT);
+    pinMode(_pins[0], INPUT);
     _t1 = 0;
     _t2 = millis();
     _consecutive = false;
@@ -15,7 +15,7 @@ void WheelSpeedSensor::initialize(const ArrayList<String> &parentTags) {
 float getRPM(unsigned long t1, unsigned long t2) { return float(60000.0 / double(t2 - t1)); }
 
 float WheelSpeedSensor::read() {
-    if (pulseTriggered(_pins.get(0))) {
+    if (pulseTriggered(_pins[0])) {
         if (!_consecutive) {
             _consecutive = true;
             _t1 = _t2;
