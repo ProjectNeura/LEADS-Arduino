@@ -17,10 +17,9 @@ protected:
 
 public:
     Controller() : Device<T>() {}
-    int level() { return this->_parentTags.size(); }
     const ArrayList<Device<E>> &devices() { return _devices; }
     void device(const String &tag, const Device<E> &device) { _attachDevice(tag, device); }
-    Device<E> device(const String &tag) { return _devices.get(_device_tags.indexOf(tag)); }
+    Device<E> device(const String &tag) { return _devices[_device_tags.indexOf(tag)]; }
     void initialize(const ArrayList<String> &parentTags) override {
         Device<E>::initialize(parentTags);
         for (Device<E> d: _devices)
