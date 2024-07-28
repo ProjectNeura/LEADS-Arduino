@@ -3,6 +3,7 @@
 
 
 #include "Arduino.h"
+#include "Memory.h"
 
 template<typename E>
 class ArrayList {
@@ -14,8 +15,7 @@ protected:
         if (newCapacity < minCapacity)
             newCapacity = minCapacity;
         E *newArray = new E[newCapacity];
-        memmove(newArray, _array, _size * sizeof(E));
-        delete[] _array;
+        arraycopy(_array, newArray, _size);
         _array = newArray;
         _capacity = newCapacity;
     }
@@ -24,16 +24,12 @@ protected:
             grow(minCapacity);
     }
     void ensureCapacityInternal(size_t minCapacity) { ensureExplicitCapacity(max(10, minCapacity)); }
-    void add(E *elements, size_t size) {
-        ensureCapacityInternal(_size + size);
-        memcpy(_array + _size, elements, size * sizeof(E));
-    }
 
 public:
     explicit ArrayList(size_t initialCapacity = 10) :
         _size(0), _capacity(initialCapacity), _array(new E[initialCapacity]) {}
-    ArrayList(E const *const initialArray, size_t size) : _size(0), _capacity(size), _array(new E[size]) {
-        memcpy(_array, initialArray, size * sizeof(E));
+    ArrayList(E const *const initialArray, size_t size) : _size(size), _capacity(size), _array(new E[size]) {
+        arraycopy(initialArray, _array, size);
     }
     ArrayList(const ArrayList<E> &other) : ArrayList(other._array, other._size) {}
     ~ArrayList() { delete[] _array; }
@@ -42,18 +38,17 @@ public:
     void set(int index, const E &element) { _array[index] = element; }
     E get(int index) { return _array[index]; }
     void clear() {
-        delete[] _array;
         _array = new E[0];
         _size = _capacity = 0;
+    }
+    void add(E const *const elements, size_t size) {
+        ensureCapacityInternal(_size + size);
+        arraycopy(elements, _array, size, 0, _size);
+        _size += size;
     }
     void add(const E &element) {
         ensureCapacityInternal(_size + 1);
         _array[_size++] = element;
-    }
-    ArrayList<E> add(const ArrayList<E> &other) {
-        ArrayList<E> result = copy();
-        result += other;
-        return result;
     }
     bool contains(const E &element) { return indexOf(element) >= 0; }
     int indexOfInRange(const E &element, int start, int stop) {
@@ -70,13 +65,18 @@ public:
         return -1;
     }
     int lastIndexOf(const E &element) { return lastIndexOfInRange(element, 0, _size); }
-    ArrayList<E> copy() { return ArrayList<E>(reinterpret_cast<size_t>(this)); }
+    ArrayList<E> copy() { return ArrayList<E>(*this); }
+    E operator[](int index) { return get(index); }
     ArrayList<E> operator+(const E &element) {
         ArrayList<E> result = copy();
         result += element;
         return result;
     }
-    ArrayList<E> operator+(const ArrayList<E> &other) { return add(other); }
+    ArrayList<E> operator+(const ArrayList<E> &other) {
+        ArrayList<E> result = copy();
+        result += other;
+        return result;
+    }
     ArrayList<E> &operator+=(const E &element) {
         add(element);
         return *this;
@@ -88,8 +88,12 @@ public:
     ArrayList<E> &operator=(const ArrayList<E> &other) {
         if (this != &other) {
             ensureCapacityInternal(other._capacity);
-            if (other._size > 0)
-                memcpy(_array, other._array, _size * sizeof(E));
+            if (other._size > 0) {
+                _array = new E[other._capacity];
+                _capacity = other._capacity;
+                arraycopy(other._array, _array, other._size);
+                _size = other._size;
+            }
         }
         return *this;
     }
