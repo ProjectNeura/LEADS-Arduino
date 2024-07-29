@@ -9,7 +9,7 @@ protected:
     float _factor;
 
 public:
-    VoltageSensor(float r1, float r2, const ArrayList<int> &pins);
+    VoltageSensor(const ArrayList<int> &pins, float r1, float r2);
     void initialize(const ArrayList<String> &parentTags) override;
     float read() override;
 };

@@ -1,6 +1,6 @@
 #include "VoltageSensor.h"
 
-VoltageSensor::VoltageSensor(float r1, float r2, const ArrayList<int> &pins) :
+VoltageSensor::VoltageSensor(const ArrayList<int> &pins, float r1, float r2) :
     Device<float>(pins), _factor((r1 + r2) / r2) {}
 
 void VoltageSensor::initialize(const ArrayList<String> &parentTags) {
