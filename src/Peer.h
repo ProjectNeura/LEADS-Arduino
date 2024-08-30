@@ -11,10 +11,10 @@ protected:
     String _separator, _remainder;
 
 public:
-    explicit Peer(unsigned int baudRate = 9600, const String &separator = ";", const String &remainder = "");
+    explicit Peer(const String& tag, unsigned int baudRate = 9600, const String &separator = ";", const String &remainder = "");
     void initialize(const ArrayList<String> &parentTags) override;
     String read() override;
-    void write(String payload) override;
+    void write(const String &payload) override;
     void refresh();
 };
 
