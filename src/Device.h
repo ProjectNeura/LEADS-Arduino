@@ -8,7 +8,7 @@ template<typename T>
 class Device {
 protected:
     String _tag = "";
-    ArrayList<String> _parentTags = ArrayList<String>(0);
+    ArrayList<String> _parentTags = ArrayList<String>();
     ArrayList<int> _pins;
 
 public:
@@ -20,7 +20,7 @@ public:
     String tag() { return _tag; }
     const ArrayList<String> &parentTags() { return _parentTags; }
     virtual void initialize(const ArrayList<String> &parentTags) { _parentTags = parentTags; }
-    void initializeAsRoot() { initialize(ArrayList<String>(0)); }
+    void initializeAsRoot() { initialize(ArrayList<String>()); }
     virtual T read() { return T(); }
     virtual void write(const T &payload) {}
     virtual void update(T data) {}
