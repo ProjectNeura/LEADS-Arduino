@@ -18,5 +18,8 @@
 #define LEFT_INDICATOR "lindi"
 #define RIGHT_INDICATOR "rindi"
 
+#define POWER_CONTROLLER "pc"
+#define WHEEL_SPEED_CONTROLLER "wsc"
+
 
 #endif // PREDEFINEDTAGS_H
