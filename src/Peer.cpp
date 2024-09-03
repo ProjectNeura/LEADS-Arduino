@@ -24,12 +24,16 @@ String Peer::read() {
     return "";
 }
 void Peer::write(const String &payload) { Serial.print(payload + _separator); }
+void Peer::update(const String &data) {
+    for (Device<String> d: _devices)
+        if (data.startsWith(d.tag() + ":"))
+            d.update(data.substring(d.tag().length() + 1));
+}
 void Peer::refresh() {
     String msg = read();
     if (msg == "")
         return;
     if (msg == "ic")
         return write(_tag);
-    for (Device<String> d: _devices)
-        d.update(msg);
+    update(msg);
 }
