@@ -15,6 +15,7 @@ public:
     void initialize(const ArrayList<String> &parentTags) override;
     String read() override;
     void write(const String &payload) override;
+    void update(const String &data) override;
     void refresh();
 };
 

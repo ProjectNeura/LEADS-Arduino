@@ -23,7 +23,7 @@ public:
     void initializeAsRoot() { initialize(ArrayList<String>()); }
     virtual T read() { return T(); }
     virtual void write(const T &payload) {}
-    virtual void update(T data) {}
+    virtual void update(const T &data) {}
     virtual void close() {}
 };
 
