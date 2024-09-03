@@ -26,7 +26,7 @@ protected:
     void ensureCapacityInternal(size_t minCapacity) { ensureExplicitCapacity(max(10, minCapacity)); }
 
 public:
-    explicit ArrayList(size_t initialCapacity = 10) :
+    explicit ArrayList(size_t initialCapacity = 0) :
         _size(0), _capacity(initialCapacity), _array(new E[initialCapacity]) {}
     ArrayList(E const *const initialArray, size_t size) : _size(size), _capacity(size), _array(new E[size]) {
         arraycopy(initialArray, _array, size);

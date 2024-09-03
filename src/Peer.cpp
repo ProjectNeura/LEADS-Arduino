@@ -2,8 +2,11 @@
 
 
 // std::move() is not available in the C library
-Peer::Peer(unsigned int baudRate, const String &separator, const String &remainder) : // NOLINT(*-pass-by-value)
-    Controller<String, String>(), _baudRate(baudRate), _separator(separator), _remainder(remainder) {}
+Peer::Peer(const String &tag, unsigned int baudRate, const String &separator, // NOLINT(*-pass-by-value)
+           const String &remainder) : // NOLINT(*-pass-by-value)
+    Controller<String, String>(), _baudRate(baudRate), _separator(separator), _remainder(remainder) {
+    _tag = tag;
+}
 void Peer::initialize(const ArrayList<String> &parentTags) {
     Controller<String, String>::initialize(parentTags);
     Serial.begin(_baudRate);
@@ -20,11 +23,13 @@ String Peer::read() {
     }
     return "";
 }
-void Peer::write(String payload) { Serial.print(payload + _separator); }
+void Peer::write(const String &payload) { Serial.print(payload + _separator); }
 void Peer::refresh() {
     String msg = read();
     if (msg == "")
         return;
+    if (msg == "ic")
+        return write(_tag);
     for (Device<String> d: _devices)
         d.update(msg);
 }
