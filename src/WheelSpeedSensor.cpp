@@ -1,7 +1,7 @@
 #include "WheelSpeedSensor.h"
 #include "Utils.h"
 
-WheelSpeedSensor::WheelSpeedSensor(const ArrayList<int> &pins, OnUpdate onUpdate) :
+WheelSpeedSensor::WheelSpeedSensor(const ArrayList<int> &pins, OnWheelSpeedSensorUpdate onUpdate) :
     Device<float>(pins), _t1(0), _t2(0), _consecutive(false), _onUpdate(onUpdate) {}
 
 void WheelSpeedSensor::initialize(const ArrayList<String> &parentTags) {
@@ -15,7 +15,7 @@ void WheelSpeedSensor::initialize(const ArrayList<String> &parentTags) {
 float getRPM(unsigned long t1, unsigned long t2) { return float(60000.0 / double(t2 - t1)); }
 
 float WheelSpeedSensor::read() {
-    if (pulseTriggered(_pins[0])) {
+    if (digitalRead(_pins[0]) == LOW) {
         if (!_consecutive) {
             _consecutive = true;
             _t1 = _t2;

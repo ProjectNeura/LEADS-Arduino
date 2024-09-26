@@ -4,7 +4,7 @@ Device KEYWORD1
 VoltageSensor KEYWORD1
 WheelSpeedSensor KEYWORD1
 Peer KEYWORD1
-pulseTriggered KEYWORD2
+returnString KEYWORD2
 returnFloat KEYWORD2
 returnDouble KEYWORD2
 arraycopy KEYWORD2
