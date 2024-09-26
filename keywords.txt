@@ -2,6 +2,7 @@ ArrayList KEYWORD1
 Controller KEYWORD1
 Device KEYWORD1
 VoltageSensor KEYWORD1
+OnWheelSpeedSensorUpdate KEYWORD1
 WheelSpeedSensor KEYWORD1
 Peer KEYWORD1
 returnString KEYWORD2
