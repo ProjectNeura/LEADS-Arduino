@@ -5,7 +5,7 @@
 #include "Arduino.h"
 #include "Peer.h"
 
-bool pulseTriggered(int pin);
+void returnString(Peer &peer, const String &tag, const String &msg);
 
 void returnFloat(Peer &peer, const String &tag, float n);
 
