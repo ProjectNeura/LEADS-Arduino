@@ -10,9 +10,14 @@ struct Acceleration {
     String toString();
 };
 
+typedef void (*OnAccelerometerUpdate)(Acceleration acceleration);
 
 class Accelerometer : public Device<Acceleration> {
+protected:
+    const OnAccelerometerUpdate _onUpdate;
+
 public:
+    Accelerometer(OnAccelerometerUpdate onUpdate);
     virtual void initialize(const ArrayList<String> &parentTags) override;
     virtual Acceleration read() override;
 };
