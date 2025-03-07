@@ -17,9 +17,8 @@ protected:
     const OnAccelerometerUpdate _onUpdate;
 
 public:
-    Accelerometer(OnAccelerometerUpdate onUpdate);
-    virtual void initialize(const ArrayList<String> &parentTags) override;
-    virtual Acceleration read() override;
+    explicit Accelerometer(OnAccelerometerUpdate onUpdate);
+    void initialize(const ArrayList<String> &parentTags) override;
 };
 
 

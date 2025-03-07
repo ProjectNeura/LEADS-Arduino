@@ -6,3 +6,5 @@ String Acceleration::toString() {
 }
 
 Accelerometer::Accelerometer(OnAccelerometerUpdate onUpdate) : _onUpdate(onUpdate) {}
+
+void Accelerometer::initialize(const ArrayList<String> &parentTags) { Device<Acceleration>::initialize(parentTags); }
