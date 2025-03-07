@@ -4,6 +4,10 @@ Device KEYWORD1
 VoltageSensor KEYWORD1
 OnWheelSpeedSensorUpdate KEYWORD1
 WheelSpeedSensor KEYWORD1
+Acceleration KEYWORD1
+OnAccelerometerUpdate KEYWORD1
+Accelerometer KEYWORD1
+Pedal KEYWORD1
 Peer KEYWORD1
 returnString KEYWORD2
 returnFloat KEYWORD2
